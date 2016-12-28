@@ -8,8 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 /**
  * Created by codersparks on 27/12/2016.
  */
@@ -21,7 +19,7 @@ public class PartController {
     private PartService partService;
 
     @RequestMapping(path = "/", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<List<Part>> getAllParts() {
+    public ResponseEntity<Iterable<Part>> getAllParts() {
         return ResponseEntity.ok(partService.getParts());
     }
 }
