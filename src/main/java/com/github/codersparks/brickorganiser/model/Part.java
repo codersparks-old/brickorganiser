@@ -2,10 +2,9 @@ package com.github.codersparks.brickorganiser.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.persistence.Id;
 
 /**
  * Created by codersparks on 27/12/2016.
