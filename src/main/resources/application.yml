@@ -4,9 +4,3 @@ spring:
   data:
     mongodb:
       database: brickorganiser
-server:
-  ssl:
-    key-store: classpath:keystore.jks
-    key-store-password: ${KEYSTORE_PASSWORD}
-    key-password: ${KEYSTORE_PASSWORD}
-  port: 8443
