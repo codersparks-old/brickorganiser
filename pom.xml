@@ -5,7 +5,7 @@
 
     <groupId>com.github.codersparks</groupId>
     <artifactId>brickorganiser</artifactId>
-    <packaging>war</packaging>
+    <packaging>pom</packaging>
     <version>1.0</version>
     <name>brickorganiser</name>
 
@@ -20,50 +20,46 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <brickorganiser.version>1.0</brickorganiser.version>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-        <!--<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-mongodb</artifactId>
-        </dependency>
-        -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.16.12</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-            <scope>provided</scope>
-        </dependency>
+    <modules>
+        <module>brickorganiser-model</module>
+        <module>brickorganiser-web</module>
+        <module>brickorganiser-repository</module>
+        <module>brickorganiser-interfaces</module>
+        <module>brickorganiser-services</module>
+    </modules>
 
-        <!--
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
-            <scope>provided</scope>
-        </dependency>
-        -->
-    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.github.codersparks</groupId>
+                <artifactId>brickorganiser-web</artifactId>
+                <version>${brickorganiser.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.codersparks</groupId>
+                <artifactId>brickorganiser-model</artifactId>
+                <version>${brickorganiser.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.codersparks</groupId>
+                <artifactId>brickorganiser-repository</artifactId>
+                <version>${brickorganiser.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.codersparks</groupId>
+                <artifactId>brickorganiser-interfaces</artifactId>
+                <version>${brickorganiser.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.codersparks</groupId>
+                <artifactId>brickorganiser-services</artifactId>
+                <version>${brickorganiser.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
@@ -83,39 +79,7 @@
         </plugins>
     </build>
 
-    <profiles>
-        <profile>
-            <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
-            <!-- Use this profile for any OpenShift specific customization your app will need. -->
-            <!-- By default that is to put the resulting archive into the 'deployments' folder. -->
-            <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
-            <id>openshift</id>
-            <build>
-                <finalName>brickorganiser</finalName>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-war-plugin</artifactId>
-                        <version>2.3</version>
-                        <configuration>
-                            <failOnMissingWebXml>false</failOnMissingWebXml>
-                            <outputDirectory>target</outputDirectory>
-                            <warName>ROOT</warName>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
-            <id>dev</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.springframework.boot</groupId>
-                        <artifactId>spring-boot-maven-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+
+
+
 </project>

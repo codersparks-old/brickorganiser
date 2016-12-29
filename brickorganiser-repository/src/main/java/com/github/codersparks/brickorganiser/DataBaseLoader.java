@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import javax.xml.crypto.Data;
-
 /**
  * Created by codersparks on 27/12/2016.
  */
