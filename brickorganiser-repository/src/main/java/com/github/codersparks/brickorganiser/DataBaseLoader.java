@@ -24,7 +24,7 @@ public class DataBaseLoader implements CommandLineRunner{
     public void run(String... strings) throws Exception {
 
         logger.info("Adding test part to DB");
-        Part part = new Part("0000", "testItem", 99999999);
+        Part part = new Part("0000", "testItem", 99999999, null, null, null);
         partRepository.save(part);
     }
 }

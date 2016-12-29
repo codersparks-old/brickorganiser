@@ -16,7 +16,7 @@ public class BrickLinkPart {
     private String itemID;
     private String itemName;
     private int category;
-    private Integer itemDimX;
-    private Integer itemDimY;
-    private Integer itemDimZ;
+    private String itemDimX;
+    private String itemDimY;
+    private String itemDimZ;
 }
