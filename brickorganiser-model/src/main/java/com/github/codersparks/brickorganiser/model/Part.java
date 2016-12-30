@@ -1,6 +1,6 @@
 package com.github.codersparks.brickorganiser.model;
 
-import com.github.codersparks.brickorganiser.model.bricklink.BrickLinkPart;
+import com.github.codersparks.brickorganiser.model.bricklink.BrickLinkItem;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,7 +24,7 @@ public class Part {
     
     private static final Logger logger = LoggerFactory.getLogger(Part.class);
 
-    public Part(BrickLinkPart brickLinkPart) {
+    public Part(BrickLinkItem brickLinkPart) {
 
         this.id = brickLinkPart.getItemID();
         this.category = brickLinkPart.getCategory();
@@ -38,6 +38,8 @@ public class Part {
                 logger.warn(String.format("Exception caught when trying to parse X Dimension from BrickLink part with ID: %s setting to null", brickLinkPart.getItemID()), e);
                 dimX = null;
             }
+        } else { // null or length <= 0
+            dimX = null;
         }
         String brickLinkDimY = brickLinkPart.getItemDimY();
         if(brickLinkDimY != null && brickLinkDimY.length() > 0) {
@@ -47,6 +49,8 @@ public class Part {
                 logger.warn(String.format("Exception caught when trying to parse Y Dimension from BrickLink part with ID: %s setting to null", brickLinkPart.getItemID()), e);
                 dimY = null;
             }
+        }else { // null or length <= 0
+            dimY = null;
         }
         String brickLinkDimZ = brickLinkPart.getItemDimZ();
         if(brickLinkDimZ != null && brickLinkDimZ.length() > 0) {
@@ -56,6 +60,8 @@ public class Part {
                 logger.warn(String.format("Exception caught when trying to parse Z Dimension from BrickLink part with ID: %s setting to null", brickLinkPart.getItemID()), e);
                 dimZ = null;
             }
+         }else { // null or length <= 0
+            dimY = null;
         }
     }
 
