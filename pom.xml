@@ -29,6 +29,7 @@
         <module>brickorganiser-repository</module>
         <module>brickorganiser-interfaces</module>
         <module>brickorganiser-services</module>
+        <module>brickorganiser-parsers</module>
     </modules>
 
     <dependencyManagement>
@@ -56,6 +57,11 @@
             <dependency>
                 <groupId>com.github.codersparks</groupId>
                 <artifactId>brickorganiser-services</artifactId>
+                <version>${brickorganiser.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.codersparks</groupId>
+                <artifactId>brickorganiser-parsers</artifactId>
                 <version>${brickorganiser.version}</version>
             </dependency>
         </dependencies>
