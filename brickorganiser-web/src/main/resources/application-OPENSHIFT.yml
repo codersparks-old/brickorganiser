@@ -1,7 +1,7 @@
 spring:
   data:
     mongodb:
-      host: ${OPENSHIFT_MONGODB_DB_HOST}
-      username: ${OPENSHIFT_MONGODB_DB_USERNAME}
-      password: ${OPENSHIFT_MONGODB_DB_PASSWORD}
-      port: ${OPENSHIFT_MONGODB_DB_PORT}
+      host: ${MONGO_HOST}
+      username: ${MONGO_USER}
+      password: ${MONGO_PASSWORD}
+      database: ${MONGO_DATABASE}
