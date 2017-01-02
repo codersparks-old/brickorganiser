@@ -6,17 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * Created by codersparks on 27/12/2016.
  */
-@Entity
-@Table(indexes={
-        @Index(name="description_index", columnList = "description", unique = false),
-        @Index(name="category_index", columnList = "category", unique = false)
-})
+@Document
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -68,8 +65,10 @@ public class Part {
     @Id
     private String id;
 
+    @Indexed
     private String description;
 
+    @Indexed
     private int category;
 
     private Integer dimX = null;
