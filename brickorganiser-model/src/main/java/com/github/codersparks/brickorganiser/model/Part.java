@@ -1,6 +1,5 @@
 package com.github.codersparks.brickorganiser.model;
 
-import com.github.codersparks.brickorganiser.model.bricklink.BrickLinkItem;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,8 +29,8 @@ public class Part {
     @Indexed
     private String category;
 
-    private Integer dimX = null;
-    private Integer dimY = null;
-    private Integer dimZ = null;
+    private Float dimX = null;
+    private Float dimY = null;
+    private Float dimZ = null;
 
 }

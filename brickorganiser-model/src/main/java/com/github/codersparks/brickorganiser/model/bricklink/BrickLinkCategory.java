@@ -7,7 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
- * Created by codersparks on 02/01/2017.
+ * Item to represent a BrickLink Category - This will be used to store the categories in the DB
  */
 @Data
 @NoArgsConstructor
