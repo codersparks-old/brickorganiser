@@ -1,6 +1,7 @@
 package com.github.codersparks.brickorganiser.parser;
 
 import com.fasterxml.jackson.databind.MappingIterator;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import lombok.Data;
@@ -24,13 +25,14 @@ import java.util.List;
  */
 @RequiredArgsConstructor
 @Data
-public abstract class BrickLinkBaseParser<T> {
+public class BrickLinkBaseParser<T> {
 
     private static final Logger logger = LoggerFactory.getLogger(BrickLinkBaseParser.class);
 
     private final Class<T> type;
     private final boolean header;
     private char delimeter = '\t';
+    private final CsvSchema csvSchema;
 
     /**
      * Parse the selected {@link InputStream} for data in CSV format (using the supplied delimeter instead of comma)
@@ -46,7 +48,10 @@ public abstract class BrickLinkBaseParser<T> {
         logger.debug("Attempting to read CSV data from input stream as type {}", type.getCanonicalName());
 
         CsvMapper mapper = new CsvMapper();
-        CsvSchema csvSchema = mapper.schemaFor(type).withColumnSeparator(delimeter);
+
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(String.class, new StringAsNullDeserialiser(String.class));
+        mapper.registerModule(module);
 
         List<T> resultList = new ArrayList<T>();
 

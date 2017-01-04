@@ -48,7 +48,7 @@ public class BrickLinkCategoryParserTest {
 
         BrickLinkCategoryParser brickLinkCategoryParser = new BrickLinkCategoryParser();
 
-        List<BrickLinkCategory> categoryList = brickLinkCategoryParser.loadObjectList(in);
+        List<BrickLinkCategory> categoryList = brickLinkCategoryParser.parse(in);
 
         logger.info("Category list produced: {}", categoryList);
 
