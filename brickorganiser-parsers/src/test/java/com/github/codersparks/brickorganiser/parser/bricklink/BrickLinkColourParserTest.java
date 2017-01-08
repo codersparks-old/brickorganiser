@@ -1,4 +1,4 @@
-package com.github.codersparks.brickorganiser.parser;
+package com.github.codersparks.brickorganiser.parser.bricklink;
 
 import com.github.codersparks.brickorganiser.model.bricklink.BrickLinkColour;
 import org.junit.Before;

@@ -1,4 +1,4 @@
-package com.github.codersparks.brickorganiser.parser;
+package com.github.codersparks.brickorganiser.parser.bricklink;
 
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,7 +1,8 @@
-package com.github.codersparks.brickorganiser.parser;
+package com.github.codersparks.brickorganiser.parser.bricklink;
 
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import com.github.codersparks.brickorganiser.model.bricklink.BrickLinkColour;
+import com.github.codersparks.brickorganiser.parser.CsvParser;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,7 +14,7 @@ import java.util.List;
 public class BrickLinkColourParser implements BrickLinkParser<BrickLinkColour> {
 
     private static final char columnSeperator = '\t';
-    private final BrickLinkBaseParser<BrickLinkColour> brickLinkBaseParser;
+    private final CsvParser<BrickLinkColour> csvParser;
 
     public BrickLinkColourParser() {
 
@@ -31,11 +32,11 @@ public class BrickLinkColourParser implements BrickLinkParser<BrickLinkColour> {
                 .setColumnSeparator(columnSeperator)
                 .build();
 
-        this.brickLinkBaseParser = new BrickLinkBaseParser<>(BrickLinkColour.class, true, csvSchema);
+        this.csvParser = new CsvParser<>(BrickLinkColour.class, true, csvSchema);
     }
 
     @Override
     public List<BrickLinkColour> parse(InputStream inputStream) throws IOException {
-        return this.brickLinkBaseParser.loadObjectList(inputStream);
+        return this.csvParser.loadObjectList(inputStream);
     }
 }

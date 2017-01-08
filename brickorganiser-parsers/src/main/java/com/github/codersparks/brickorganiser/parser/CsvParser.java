@@ -17,27 +17,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>Base paser used for all of the BrickLink Parsers in this package</p>
- * <p>
- * <p>Attempts to read the CSV into the supplied type in the constructor. Uses the first line of the file to read the column names in</p>
- * <p>
- * <p>If the data contains a blank first row then suppy <b>{@code true}</b> as the value for skipFirstDataLine, otherwise supply <b>{@code false}</b></p>
+ * <p>Base CSV paser used for all of the Parsers in this package</p>
+ *
+ * <p>Attempts to read the CSV into the supplied type in the constructor.</p>
+ *
+ * <p>Use the csvSchema field to update the schema to use when parsing</p>
+ *
+ * <p>Empty fields will be set to null unless {@link #emptyFieldsAsNull} is set to <b>{@code false}</b></p>
+ *
  */
 @RequiredArgsConstructor
 @Data
-public class BrickLinkBaseParser<T> {
+public class CsvParser<T> {
 
-    private static final Logger logger = LoggerFactory.getLogger(BrickLinkBaseParser.class);
+    private static final Logger logger = LoggerFactory.getLogger(CsvParser.class);
 
+    /**
+     * The type that the CsvParser will attempt to use to model the data
+     */
     private final Class<T> type;
+
+    /**
+     * Does the data contain a header row (this will be ignored)
+     */
     private final boolean header;
-    private char delimeter = '\t';
+
+    /**
+     * The {@link CsvSchema} to use to parse the data
+     */
     private final CsvSchema csvSchema;
 
     /**
-     * Parse the selected {@link InputStream} for data in CSV format (using the supplied delimeter instead of comma)
-     * <p>
+     * Should empty fields be set as null (default true)
+     */
+    private boolean emptyFieldsAsNull = true;
+
+    /**
+     * <p>Parse the selected {@link InputStream} for data in CSV format (using the supplied delimeter instead of comma)</p>
+     *
      * <p>This method will ignore any blank lines in the file</p>
+     *
      *
      * @param inputStream
      * @return
@@ -49,10 +68,12 @@ public class BrickLinkBaseParser<T> {
 
         CsvMapper mapper = new CsvMapper();
 
-        SimpleModule module = new SimpleModule();
-        module.addDeserializer(String.class, new StringAsNullDeserialiser(String.class));
-        mapper.registerModule(module);
+        if(emptyFieldsAsNull) {
 
+            SimpleModule module = new SimpleModule();
+            module.addDeserializer(String.class, new StringAsNullDeserialiser(String.class));
+            mapper.registerModule(module);
+        }
         List<T> resultList = new ArrayList<T>();
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));

@@ -24,5 +24,9 @@
             <groupId>com.github.codersparks</groupId>
             <artifactId>brickorganiser-repository</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.github.codersparks</groupId>
+            <artifactId>brickorganiser-parsers</artifactId>
+        </dependency>
     </dependencies>
 </project>

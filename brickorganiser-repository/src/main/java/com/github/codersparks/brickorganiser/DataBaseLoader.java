@@ -34,7 +34,7 @@ public class DataBaseLoader implements CommandLineRunner{
         brickLinkCategoryRepository.save(brickLinkCategory);
 
         logger.info("Adding test part to DB");
-        Part part = new Part("0000", "testItem", "testCategory", null, null, null);
+        Part part = new Part("0000", "testItem", "testCategory", null, null, null, null);
         partRepository.save(part);
     }
 }

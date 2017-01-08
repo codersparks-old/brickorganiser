@@ -29,6 +29,11 @@ public class Part {
     @Indexed
     private String category;
 
+    /**
+     * This field is used when brickLink use a different id to Rebrickable
+     */
+    private String brickLinkId;
+
     private Float dimX = null;
     private Float dimY = null;
     private Float dimZ = null;
